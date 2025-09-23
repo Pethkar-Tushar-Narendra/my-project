@@ -1,14 +1,42 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser, registerUser } from "../store/userSlice";
+
 export default function Auth() {
+  const { userInfo, token, loading, error } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(loginUser({ email, password }));
+  // };
+  const [form, setForm] = useState({
+    first_name: "test1",
+    last_name: "test1",
+    email: "test1@exmple.com",
+    mobile: "1234567890",
+    password: "1234567890",
+  });
+
+  console.log(userInfo, token, loading, error);
+  // const handleChange = (e) => {
+  //   setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const res = dispatch(loginUser(form));
+    console.log(res, form, "form", userInfo, token, loading, error);
+    // navigate("/");
+  };
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white dark:bg-gray-900">
-        <body class="h-full">
-        ```
-      */}
       <div className="flex min-h-full">
         <div className="relative hidden w-0 flex-1 lg:block">
           <img
@@ -138,6 +166,7 @@ export default function Auth() {
                   <div>
                     <button
                       type="submit"
+                      onClick={handleSubmit}
                       className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
                     >
                       Sign in
