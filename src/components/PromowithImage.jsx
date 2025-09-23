@@ -25,7 +25,7 @@ const features = [
   },
 ];
 
-export default function Example() {
+export default function PromowithImage() {
   return (
     <div className="overflow-hidden bg-black py-8 sm:py-12 dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

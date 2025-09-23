@@ -23,6 +23,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
@@ -107,7 +108,7 @@ const navigation = {
   ],
 };
 
-export default function Example() {
+export default function StoreNaviagtion({ openCart }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -210,12 +211,12 @@ export default function Example() {
                 </a>
               </div>
               <div className="flow-root">
-                <a
-                  href="#"
+                <Link
+                  to={"/auth"}
                   className="-m-2 block p-2 font-medium text-gray-900"
                 >
                   Sign in
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -440,6 +441,7 @@ export default function Example() {
                         <a
                           href="#"
                           className="group -m-2 flex items-center p-2"
+                          onClick={openCart}
                         >
                           <ShoppingBagIcon
                             aria-hidden="true"
