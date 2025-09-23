@@ -129,7 +129,7 @@ export default function StoreNavigation() {
           </div>
 
           {/* Secondary navigation */}
-          <div className=" px-4 pb-14 sm:pb-0 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-3">
+          <div className=" px-4 pb-14 sm:pb-0 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               {/* Logo */}
               <div className="flex flex-1 pr-2">
