@@ -8,7 +8,6 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
-import logo from "../assets/logo.png";
 import InputGroups from "./InputGroups";
 const currencies = ["English", "Hindi", "Marathi"];
 const navigation = {
