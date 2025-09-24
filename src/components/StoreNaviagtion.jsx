@@ -17,94 +17,99 @@ import {
 } from "@headlessui/react";
 import {
   Bars3Icon,
+  HeartIcon,
   MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
   ShoppingBagIcon,
+  ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/Logo.png";
 
-const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
+const currencies = ["English", "Hindi", "Marathi"];
 const navigation = {
   categories: [
-    {
-      name: "Women",
-      featured: [
-        {
-          name: "New Arrivals",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-01.jpg",
-          imageAlt:
-            "Models sitting back to back, wearing Basic Tee in black and bone.",
-        },
-        {
-          name: "Basic Tees",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-02.jpg",
-          imageAlt:
-            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
-        },
-        {
-          name: "Accessories",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-03.jpg",
-          imageAlt:
-            "Model wearing minimalist watch with black wristband and white watch face.",
-        },
-        {
-          name: "Carry",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-04.jpg",
-          imageAlt:
-            "Model opening tan leather long wallet with credit card pockets and cash pouch.",
-        },
-      ],
-    },
-    {
-      name: "Men",
-      featured: [
-        {
-          name: "New Arrivals",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-01.jpg",
-          imageAlt:
-            "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
-        },
-        {
-          name: "Basic Tees",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-02.jpg",
-          imageAlt: "Model wearing light heather gray t-shirt.",
-        },
-        {
-          name: "Accessories",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-03.jpg",
-          imageAlt:
-            "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
-        },
-        {
-          name: "Carry",
-          href: "#",
-          imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-04.jpg",
-          imageAlt:
-            "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
-        },
-      ],
-    },
+    // {
+    //   name: "Women",
+    //   featured: [
+    //     {
+    //       name: "New Arrivals",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-01.jpg",
+    //       imageAlt:
+    //         "Models sitting back to back, wearing Basic Tee in black and bone.",
+    //     },
+    //     {
+    //       name: "Basic Tees",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-02.jpg",
+    //       imageAlt:
+    //         "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+    //     },
+    //     {
+    //       name: "Accessories",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-03.jpg",
+    //       imageAlt:
+    //         "Model wearing minimalist watch with black wristband and white watch face.",
+    //     },
+    //     {
+    //       name: "Carry",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-category-04.jpg",
+    //       imageAlt:
+    //         "Model opening tan leather long wallet with credit card pockets and cash pouch.",
+    //     },
+    //   ],
+    // },
+    // {
+    //   name: "Men",
+    //   featured: [
+    //     {
+    //       name: "New Arrivals",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-01.jpg",
+    //       imageAlt:
+    //         "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
+    //     },
+    //     {
+    //       name: "Basic Tees",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-02.jpg",
+    //       imageAlt: "Model wearing light heather gray t-shirt.",
+    //     },
+    //     {
+    //       name: "Accessories",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-03.jpg",
+    //       imageAlt:
+    //         "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
+    //     },
+    //     {
+    //       name: "Carry",
+    //       href: "#",
+    //       imageSrc:
+    //         "https://tailwindcss.com/plus-assets/img/ecommerce-images/mega-menu-01-men-category-04.jpg",
+    //       imageAlt:
+    //         "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
+    //     },
+    //   ],
+    // },
   ],
   pages: [
-    { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
+    { name: "Home", href: "#" },
+    { name: "Contact", href: "#" },
+    { name: "About", href: "#" },
+    { name: "Sign Up", href: "#" },
   ],
 };
 
@@ -112,7 +117,7 @@ export default function StoreNaviagtion({ openCart }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white border-b border-gray-200">
       {/* Mobile menu */}
       <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
         <DialogBackdrop
@@ -138,7 +143,7 @@ export default function StoreNaviagtion({ openCart }) {
 
             {/* Links */}
             <TabGroup className="mt-2">
-              <div className="border-b border-gray-200">
+              <div className="">
                 <TabList className="-mb-px flex space-x-8 px-4">
                   {navigation.categories.map((category) => (
                     <Tab
@@ -246,12 +251,39 @@ export default function StoreNaviagtion({ openCart }) {
       </Dialog>
 
       <header className="relative">
-        <nav aria-label="Top">
+        <nav aria-label="Top ">
           {/* Top navigation */}
           <div className="bg-gray-900">
             <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               {/* Currency selector */}
-              <form>
+              <div className="hidden lg:block lg:flex-1">
+                {/* <div className="-ml-2 inline-grid grid-cols-1">
+                  <select
+                    id="desktop-currency"
+                    name="currency"
+                    aria-label="Currency"
+                    className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-gray-900 py-0.5 pr-7 pl-2 text-left text-base font-medium text-white focus:outline-2 focus:-outline-offset-1 focus:outline-white sm:text-sm/6"
+                  >
+                    {currencies.map((currency) => (
+                      <option key={currency}>{currency}</option>
+                    ))}
+                  </select>
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="pointer-events-none col-start-1 row-start-1 mr-1 size-5 self-center justify-self-end fill-gray-300"
+                  />
+                </div> */}
+              </div>
+
+              <p className="flex-1 text-center text-sm font-medium text-white lg:flex-none">
+                Summer Sale For All Swim Suits And Free Express Delivery - OFF
+                50%!{" "}
+                <Link to={"/"} className="ml-2 underline">
+                  ShopNow
+                </Link>
+              </p>
+
+              <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                 <div className="-ml-2 inline-grid grid-cols-1">
                   <select
                     id="desktop-currency"
@@ -268,39 +300,20 @@ export default function StoreNaviagtion({ openCart }) {
                     className="pointer-events-none col-start-1 row-start-1 mr-1 size-5 self-center justify-self-end fill-gray-300"
                   />
                 </div>
-              </form>
-
-              <div className="flex items-center space-x-6">
-                <a
-                  href="#"
-                  className="text-sm font-medium text-white hover:text-gray-100"
-                >
-                  Sign in
-                </a>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-white hover:text-gray-100"
-                >
-                  Create an account
-                </a>
               </div>
             </div>
           </div>
 
           {/* Secondary navigation */}
-          <div className="bg-white">
+          <div className="bg-white mt-3">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="border-b border-gray-200">
+              <div className="">
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
                     <a href="#">
                       <span className="sr-only">Your Company</span>
-                      <img
-                        alt=""
-                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                        className="h-8 w-auto"
-                      />
+                      <img alt="" src={logo} className="h-8 w-auto" />
                     </a>
                   </div>
 
@@ -363,13 +376,13 @@ export default function StoreNaviagtion({ openCart }) {
                           </Popover>
                         ))}
                         {navigation.pages.map((page) => (
-                          <a
+                          <NavLink
                             key={page.name}
-                            href={page.href}
+                            to={page.href}
                             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                           >
                             {page.name}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     </PopoverGroup>
@@ -402,58 +415,43 @@ export default function StoreNaviagtion({ openCart }) {
                   {/* Logo (lg-) */}
                   <a href="#" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <img
-                      alt=""
-                      src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                      className="h-8 w-auto"
-                    />
+                    <img alt="" src={logo} className="h-8 w-auto" />
                   </a>
 
                   <div className="flex flex-1 items-center justify-end">
-                    <a
-                      href="#"
-                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
-                    >
-                      Search
-                    </a>
+                    <div className="grid-cols-1 hidden md:grid">
+                      <input
+                        id="account-number"
+                        name="account-number"
+                        type="text"
+                        disabled
+                        placeholder="What are you looking for?"
+                        className="disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:outline-gray-200 col-start-1 row-start-1 block w-full rounded-md bg-white py-1.5 pr-10 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:pr-9 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
+                      />
+                      <MagnifyingGlassIcon
+                        aria-hidden="true"
+                        className="pointer-events-none col-start-1 row-start-1 mr-3 size-5 self-center justify-self-end text-gray-400 sm:size-5 dark:text-gray-500"
+                      />
+                    </div>
 
-                    <div className="flex items-center lg:ml-8">
+                    <div className="flex items-center lg:ml-4">
                       {/* Help */}
-                      <a
-                        href="#"
-                        className="p-2 text-gray-400 hover:text-gray-500 lg:hidden"
-                      >
-                        <span className="sr-only">Help</span>
-                        <QuestionMarkCircleIcon
-                          aria-hidden="true"
-                          className="size-6"
-                        />
-                      </a>
-                      <a
-                        href="#"
-                        className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
-                      >
-                        Help
-                      </a>
+                      <HeartIcon aria-hidden="true" className="size-6" />
 
                       {/* Cart */}
-                      <div className="ml-4 flow-root lg:ml-8">
-                        <a
-                          href="#"
+                      <div className="ml-4 flow-root lg:ml-4">
+                        <button
                           className="group -m-2 flex items-center p-2"
                           onClick={openCart}
                         >
-                          <ShoppingBagIcon
+                          <ShoppingCartIcon
                             aria-hidden="true"
-                            className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
+                            className="size-6 shrink-0"
                           />
-                          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                            0
-                          </span>
                           <span className="sr-only">
                             items in cart, view bag
                           </span>
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>
