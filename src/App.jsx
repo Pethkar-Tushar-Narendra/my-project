@@ -10,7 +10,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/auth/login" />;
 }
 
 function App() {

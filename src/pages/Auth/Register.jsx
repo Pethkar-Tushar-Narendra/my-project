@@ -1,8 +1,13 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/UI/Button";
+import Input from "../../components/UI/Input";
+import { registerUser } from "../../store/userSlice";
 export default function Register() {
+  const dispatch = useDispatch();
+  const { loading, error, userInfo } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -12,6 +17,7 @@ export default function Register() {
     confirm_password: "",
   });
   const [errors, setErrors] = useState({});
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   // Inline validation
   const validate = (name, value) => {
@@ -60,15 +66,33 @@ export default function Register() {
     if (Object.values(newErrors).every((e) => !e)) {
       // Valid data, send to API (remove confirm_password)
       const { confirm_password, ...body } = formData;
-      console.log(body); // Send this to your backend
+      dispatch(registerUser(body));
     }
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      console.log("Logged in user:", userInfo);
+      navigate("/");
+    }
+  }, [userInfo, navigate]);
+
+  // Show alert modal if error and general error exists
+  useEffect(() => {
+    if (error?.errors?.general) {
+      setShowErrorModal(true);
+    }
+  }, [error]);
+
+  const closeModal = () => {
+    setShowErrorModal(false);
   };
 
   return (
     <>
       <div className="mx-auto w-full max-w-sm lg:w-96">
         <div>
-          <img
+          {/* <img
             alt="Your Company"
             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
             className="h-10 w-auto dark:hidden"
@@ -77,7 +101,7 @@ export default function Register() {
             alt="Your Company"
             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
             className="h-10 w-auto not-dark:hidden"
-          />
+          /> */}
           <h2 className="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
             Register your account
           </h2>
@@ -97,7 +121,17 @@ export default function Register() {
             <form action="#" method="POST" className="space-y-6">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label
+                  <Input
+                    id="first_name"
+                    label="First name"
+                    type="text"
+                    name="first_name"
+                    value={formData.first_name}
+                    onChange={handleChange}
+                    error={errors.first_name}
+                    placeholder="First name"
+                  />
+                  {/* <label
                     htmlFor="first-name"
                     className="block text-sm/6 font-medium text-gray-900 dark:text-white"
                   >
@@ -111,108 +145,86 @@ export default function Register() {
                       autoComplete="given-name"
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >
-                    Last name
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="last-name"
-                      name="last-name"
-                      type="text"
-                      autoComplete="family-name"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                    />
-                  </div>
+                  <Input
+                    id="last_name"
+                    label="Last name"
+                    type="text"
+                    name="last_name"
+                    value={formData.last_name}
+                    onChange={handleChange}
+                    error={errors.last_name}
+                    placeholder="Last name"
+                  />
                 </div>
                 <div className="col-span-full">
-                  <label
-                    htmlFor="street-address"
-                    className="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >
-                    Street address
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="street-address"
-                      name="street-address"
-                      type="text"
-                      autoComplete="street-address"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                    />
-                  </div>
+                  <Input
+                    id="email"
+                    label="Email address"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                    placeholder="you@example.com"
+                  />
                 </div>
                 <div className="col-span-full">
-                  <label
-                    htmlFor="phone-number"
-                    className="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >
-                    Phone number
-                  </label>
-                  <div className="mt-2">
-                    <div className="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 dark:bg-white/5 dark:outline-white/10 dark:has-[input:focus-within]:outline-indigo-500">
-                      <div className="grid shrink-0 grid-cols-1 focus-within:relative">
-                        <select
-                          id="country"
-                          name="country"
-                          autoComplete="country"
-                          aria-label="Country"
-                          className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-transparent dark:text-gray-400 dark:*:bg-gray-800 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                        >
-                          <option>IN</option>
-                          {/* <option>CA</option>
-                          <option>EU</option> */}
-                        </select>
-                        <ChevronDownIcon
-                          aria-hidden="true"
-                          className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400"
-                        />
-                      </div>
-                      <input
-                        id="phone-number"
-                        name="phone-number"
-                        type="text"
-                        placeholder="123-456-7890"
-                        className="block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 dark:bg-transparent dark:text-white dark:placeholder:text-gray-500"
-                      />
-                    </div>
-                  </div>
+                  <Input
+                    id="mobile"
+                    label="Phone number"
+                    type="number"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    placeholder="123-456-7890"
+                    error={errors.mobile}
+                    phoneNumber={true}
+                  />
                 </div>
                 <div className="col-span-full">
-                  <label
-                    htmlFor="street-address"
-                    className="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >
-                    Street address
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="street-address"
-                      name="street-address"
-                      type="text"
-                      autoComplete="street-address"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                    />
-                  </div>
+                  <Input
+                    id="password"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <div className="col-span-full">
+                  <Input
+                    id="confirm_password"
+                    label="Confirm Password"
+                    type="password"
+                    name="confirm_password"
+                    value={formData.confirm_password}
+                    onChange={handleChange}
+                    error={errors.confirm_password}
+                    placeholder="Confirm your password"
+                  />
                 </div>
               </div>
               <div>
-                <button
+                <Button
                   type="submit"
                   onClick={handleSubmit}
+                  loading={loading}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
                 >
-                  Sign in
-                </button>
+                  Register
+                </Button>
               </div>
             </form>
           </div>
+          {showErrorModal && (
+            <Alerts message={error.errors.general} onClose={closeModal} />
+          )}
         </div>
       </div>
     </>

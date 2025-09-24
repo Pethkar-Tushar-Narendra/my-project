@@ -16,10 +16,10 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "user/login",
-  async (credentials, { rejectWithValue }) => {
+  async ({ email, password, rememberMe }, { rejectWithValue }) => {
     try {
-      const res = await axios.post("/user/login", credentials);
-      return res.data;
+      const res = await axios.post("/user/login", { email, password });
+      return { ...res.data, rememberMe };
     } catch (err) {
       return rejectWithValue(err.response.data || err.message);
     }
@@ -52,6 +52,19 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
+        if (action.payload?.user && action.payload?.token) {
+          state.userInfo = action.payload.user;
+          state.token = action.payload.token;
+          const cookieOptions = action.payload.rememberMe
+            ? { expires: 7 }
+            : undefined;
+          Cookies.set("token", action.payload.token, cookieOptions);
+          Cookies.set(
+            "userInfo",
+            JSON.stringify(action.payload.user),
+            cookieOptions
+          );
+        }
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -65,10 +78,15 @@ const userSlice = createSlice({
         state.loading = false;
         state.userInfo = action.payload.user;
         state.token = action.payload.token;
-        Cookies.set("token", action.payload.token, { expires: 7 }); // expire in 7 days
-        Cookies.set("userInfo", JSON.stringify(action.payload.user), {
-          expires: 7,
-        });
+        const cookieOptions = action.payload.rememberMe
+          ? { expires: 7 }
+          : undefined;
+        Cookies.set("token", action.payload.token, cookieOptions);
+        Cookies.set(
+          "userInfo",
+          JSON.stringify(action.payload.user),
+          cookieOptions
+        );
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

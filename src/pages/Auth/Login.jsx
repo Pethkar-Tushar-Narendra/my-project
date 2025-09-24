@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../../store/userSlice";
+import Input from "../../components/UI/Input";
+import Button from "../../components/UI/Button";
+import Alerts from "../../components/UI/Alerts";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -13,6 +16,8 @@ export default function Login() {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const [rememberMe, setRememberMe] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   // Inline validation
   const validate = (name, value) => {
@@ -43,7 +48,7 @@ export default function Login() {
     if (Object.values(newErrors).every((e) => !e)) {
       // Valid, submit via fetch or axios
       // Handle success, token storage, navigation etc.
-      dispatch(loginUser(formData));
+      dispatch(loginUser({ ...formData, rememberMe }));
     }
   };
 
@@ -53,12 +58,21 @@ export default function Login() {
       navigate("/");
     }
   }, [userInfo, navigate]);
+  // Show alert modal if error and general error exists
+  useEffect(() => {
+    if (error?.errors?.general) {
+      setShowErrorModal(true);
+    }
+  }, [error]);
 
+  const closeModal = () => {
+    setShowErrorModal(false);
+  };
   return (
     <>
       <div className="mx-auto w-full max-w-sm lg:w-96">
         <div>
-          <img
+          {/* <img
             alt="Your Company"
             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
             className="h-10 w-auto dark:hidden"
@@ -67,7 +81,7 @@ export default function Login() {
             alt="Your Company"
             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
             className="h-10 w-auto not-dark:hidden"
-          />
+          /> */}
           <h2 className="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
             Sign in to your account
           </h2>
@@ -83,54 +97,39 @@ export default function Login() {
         </div>
 
         <div className="mt-10">
-          <div>
+          <div className="mb-4">
             <form action="#" method="POST" className="space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm/6 font-medium text-gray-900 dark:text-gray-100"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm/6 font-medium text-gray-900 dark:text-gray-100"
-                >
-                  Password
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                  />
-                </div>
-              </div>
+              <Input
+                id="email"
+                label="Email address"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                error={errors.email}
+                placeholder="you@example.com"
+              />
+              <Input
+                id="password"
+                label="Password"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+                placeholder="Enter your password"
+              />
 
               <div className="flex items-center justify-between">
                 <div className="flex gap-3">
                   <div className="flex h-6 shrink-0 items-center">
                     <div className="group grid size-4 grid-cols-1">
                       <input
-                        id="remember-me"
                         name="remember-me"
                         type="checkbox"
+                        id="remember-me"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
                         className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 dark:border-white/10 dark:bg-white/5 dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:indeterminate:border-indigo-500 dark:indeterminate:bg-indigo-500 dark:focus-visible:outline-indigo-500 forced-colors:appearance-auto"
                       />
                       <svg
@@ -163,27 +162,31 @@ export default function Login() {
                   </label>
                 </div>
 
-                <div className="text-sm/6">
+                {/* <div className="text-sm/6">
                   <a
                     href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
                   >
                     Forgot password?
                   </a>
-                </div>
+                </div> */}
               </div>
 
               <div>
-                <button
+                <Button
                   type="submit"
                   onClick={handleSubmit}
+                  loading={loading}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
                 >
-                  Sign in
-                </button>
+                  Login
+                </Button>
               </div>
             </form>
           </div>
+          {showErrorModal && (
+            <Alerts message={error.errors.general} onClose={closeModal} />
+          )}
         </div>
       </div>
     </>
