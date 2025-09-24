@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../store/userSlice";
+import { loginUser, registerUser } from "../../store/userSlice";
 
-export default function Auth() {
+export default function Register() {
   const { userInfo, token, loading, error } = useSelector(
     (state) => state.user
   );
