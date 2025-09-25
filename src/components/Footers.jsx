@@ -1,7 +1,17 @@
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import QR from "../assets/Qr Code.png";
+import PlayStore from "../assets/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png";
+import AppStore from "../assets/download-appstore.png";
+
 export default function AppFooter() {
   return (
     <footer className="bg-black text-gray-300 pt-12 pb-8 relative mt-32 w-full">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-gray-700 pb-10">
         {/* Exclusive Column */}
         <div>
           <h3 className="text-lg font-bold mb-2 text-white">Exclusive</h3>
@@ -92,36 +102,24 @@ export default function AppFooter() {
           <div className="mb-2">Save $3 with App New User Only</div>
           <div className="flex gap-2 mb-3">
             {/* These QR and App icons should be real assets */}
-            <img
-              src="/path/to/qr-code.png"
-              alt="App QR"
-              className="h-12 w-12 object-cover"
-            />
+            <img src={QR} alt="App QR" className="h-12 w-12 object-cover" />
             <div className="flex flex-col justify-center gap-2">
-              <img
-                src="/path/to/google-play.png"
-                alt="Google Play"
-                className="h-7"
-              />
-              <img
-                src="/path/to/app-store.png"
-                alt="App Store"
-                className="h-7"
-              />
+              <img src={PlayStore} alt="Google Play" className="h-7" />
+              <img src={AppStore} alt="App Store" className="h-7" />
             </div>
           </div>
           <div className="flex gap-4 text-xl mt-2">
             <a href="#" aria-label="Facebook">
-              {/* <FaFacebookF /> */}
+              <FaFacebookF />
             </a>
             <a href="#" aria-label="Twitter">
-              {/* <FaTwitter /> */}
+              <FaTwitter />
             </a>
             <a href="#" aria-label="Instagram">
-              {/* <FaInstagram /> */}
+              <FaInstagram />
             </a>
             <a href="#" aria-label="LinkedIn">
-              {/* <FaLinkedinIn /> */}
+              <FaLinkedinIn />
             </a>
           </div>
         </div>
