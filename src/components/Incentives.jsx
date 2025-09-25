@@ -1,30 +1,31 @@
+import moduleName1 from "../assets/Services.png";
+import moduleName2 from "../assets/Services (1).png";
+import moduleName3 from "../assets/Services (2).png";
+
 const incentives = [
   {
     name: "Free Shipping",
     description:
       "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce/icons/icon-delivery-light.svg",
+    imageSrc: moduleName1,
   },
   {
     name: "24/7 Customer Support",
     description:
       "Our AI chat widget is powered by a naive series of if/else statements. Guaranteed to irritate.",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce/icons/icon-chat-light.svg",
+    imageSrc: moduleName2,
   },
   {
     name: "Fast Shopping Cart",
     description:
       "Look how fast that cart is going. What does this mean for the actual experience? I don't know.",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce/icons/icon-fast-checkout-light.svg",
+    imageSrc: moduleName3,
   },
 ];
 
 export default function Incentives() {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       <div className="mx-auto max-w-7xl py-24 sm:px-2 sm:py-32 lg:px-4">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 px-4 lg:max-w-none lg:grid-cols-3">
           {incentives.map((incentive) => (
@@ -37,7 +38,7 @@ export default function Incentives() {
                   <img
                     alt=""
                     src={incentive.imageSrc}
-                    className="mx-auto h-24 w-28"
+                    className="mx-auto h-16 w-16"
                   />
                 </div>
               </div>
