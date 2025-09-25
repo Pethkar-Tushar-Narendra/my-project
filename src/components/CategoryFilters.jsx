@@ -359,7 +359,7 @@ export default function CategoryFilters() {
                 </form>
 
                 {/* Product grid */}
-                <div className="lg:col-span-3 lg:pt-8">
+                <div className="lg:col-span-3 lg:pt-8 w-[97.5%] lg:w-full">
                   <Slider {...settings}>
                     <PromowithImage />
                     <PromowithImage />
