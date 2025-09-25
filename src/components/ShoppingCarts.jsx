@@ -24,14 +24,14 @@ export default function ShoppingCart({ open, setOpen }) {
   const userId = useSelector((state) => state.user.userInfo.id); // Adjust based on your user slice structure
 
   useEffect(() => {
-    if ((userId, open)) {
+    if (userId && open) {
       dispatch(fetchCart(userId));
     }
   }, [dispatch, userId, open]);
+  console.log(products, "prpdutcs");
 
   const handleRemove = (cartItemId) => {
     dispatch(removeFromCart(cartItemId));
-    dispatch(fetchCart(userId));
   };
   return (
     <div>
@@ -114,6 +114,7 @@ export default function ShoppingCart({ open, setOpen }) {
                                       <div className="flex">
                                         <button
                                           type="button"
+                                          disabled={loading}
                                           onClick={() =>
                                             handleRemove(product.cart_id)
                                           }
