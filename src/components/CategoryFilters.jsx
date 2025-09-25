@@ -10,15 +10,15 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
 import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import PromowithImage from "./PromowithImage";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../store/categoriesSlice"; // adjust the path as needed
-import CategoriesSkeleton from "./skeletons/CategoriesSkeleton";
-import { Link } from "react-router-dom";
-import Alerts from "./UI/Alerts";
 import Slider from "react-slick";
+import { fetchCategories } from "../store/categoriesSlice"; // adjust the path as needed
+import { setSelectedCategoryId } from "../store/categorySlice";
+import { fetchProductsByCategory } from "../store/productsSlice";
+import PromowithImage from "./PromowithImage";
+import CategoriesSkeleton from "./skeletons/CategoriesSkeleton";
+import Alerts from "./UI/Alerts";
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
   { name: "Best Rating", href: "#", current: false },
@@ -111,9 +111,25 @@ export default function CategoryFilters() {
     ),
     dotsClass: "custom-slick-dots",
   };
+
+  const selectedCategoryId = useSelector(
+    (state) => state.category.selectedCategoryId
+  );
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedCategoryId) {
+      dispatch(fetchProductsByCategory());
+      setMobileFiltersOpen(false);
+    }
+  }, [selectedCategoryId, dispatch]);
+
+  const handleCategoryChange = (categoryId) => {
+    dispatch(setSelectedCategoryId(categoryId));
+  };
   const promoSlides = [
     { title: "iPhone 14 Series", description: "10% Off..." },
     { title: "Galaxy S24", description: "Free case..." },
@@ -125,7 +141,9 @@ export default function CategoryFilters() {
           <CategoriesSkeleton />
         </div>
       ) : error ? (
-        <Alerts message={`Failed to load categories: ${error}`} />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <Alerts message={`Failed to load categories: ${error}`} />
+        </div>
       ) : (
         <div>
           {/* Mobile filter dialog */}
@@ -165,10 +183,11 @@ export default function CategoryFilters() {
                     className="px-2 py-3 font-medium text-gray-900"
                   >
                     {categories.map((category) => (
-                      <li key={category.id}>
-                        <Link href={"#"} className="block px-2 py-3">
-                          {category.name}
-                        </Link>
+                      <li
+                        key={category.id}
+                        onClick={() => handleCategoryChange(category.id)}
+                      >
+                        <p className="block px-2 py-3">{category.name}</p>
                       </li>
                     ))}
                   </ul>
@@ -272,15 +291,19 @@ export default function CategoryFilters() {
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
-                <form className="hidden lg:block lg:pr-0 lg:border-r lg:border-gray-200 lg:pt-8">
+                <div className="hidden lg:block lg:pr-0 lg:border-r lg:border-gray-200 lg:pt-8">
                   <h3 className="sr-only">Categories</h3>
                   <ul
                     role="list"
                     className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
                   >
                     {categories.map((category) => (
-                      <li key={category.name}>
-                        <button>{category.name}</button>
+                      <li key={category.id}>
+                        <button
+                          onClick={() => handleCategoryChange(category.id)}
+                        >
+                          {category.name}
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -356,7 +379,7 @@ export default function CategoryFilters() {
                       </DisclosurePanel>
                     </Disclosure>
                   ))}
-                </form>
+                </div>
 
                 {/* Product grid */}
                 <div className="lg:col-span-3 lg:pt-8 w-[97.5%] lg:w-full">

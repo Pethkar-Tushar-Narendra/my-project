@@ -4,7 +4,7 @@ export default function ProductFeature() {
     <>
       <div className="container mx-auto px-4 sm:px-6 py-16 lg:mx-auto lg:max-w-7xl lg:px-8">
         <div className="overflow-hidden bg-black py-8 sm:py-12 dark:bg-gray-900">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 ">
+          <div className="mx-auto max-w-7xl px-3 lg:px-8 ">
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pt-4 lg:pr-8">
                 <div className="lg:max-w-lg pl-6">
