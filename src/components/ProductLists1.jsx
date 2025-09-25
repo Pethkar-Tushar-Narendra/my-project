@@ -1,14 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/productsSlice"; // adjust path
 import CategoriesSkeleton from "./skeletons/CategoriesSkeleton"; // loading skeleton
 import Alerts from "./UI/Alerts"; // error alert
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/20/solid";
 
 export default function ProductLists1() {
   const dispatch = useDispatch();
