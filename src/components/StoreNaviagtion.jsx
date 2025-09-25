@@ -312,7 +312,7 @@ export default function StoreNaviagtion({ openCart }) {
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
                     <Link to="#">
-                      <span className="sr-only">Your Company</span>
+                      <span className="sr-only">Exclusive</span>
                       <h1 className="font-inter font-bold text-2xl leading-[24px] tracking-[0.03em]">
                         Exclusive
                       </h1>
