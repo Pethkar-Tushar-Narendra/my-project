@@ -1,124 +1,133 @@
-const navigation = {
-  solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Automation", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
-  ],
-  support: [
-    { name: "Submit ticket", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-  ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-  ],
-  legal: [
-    { name: "Terms of service", href: "#" },
-    { name: "Privacy policy", href: "#" },
-    { name: "License", href: "#" },
-  ],
-  legal2: [
-    { name: "Terms of service", href: "#" },
-    { name: "Privacy policy", href: "#" },
-    { name: "License", href: "#" },
-  ],
-};
-
-export default function Footers() {
+export default function AppFooter() {
   return (
-    <footer className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <img
-            alt="Company name"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-            className="h-9 dark:hidden"
-          />
-          <img
-            alt="Company name"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-            className="h-9 not-dark:hidden"
-          />
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                  Solutions
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.solutions.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                  Support
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.support.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                  Company
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                  Legal
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+    <footer className="bg-black text-gray-300 pt-12 pb-8 relative mt-32 w-full">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        {/* Exclusive Column */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-white">Exclusive</h3>
+          <div className="font-semibold mb-3">Subscribe</div>
+          <div className="mb-3">Get 10% off your first order</div>
+          <form className="flex">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="px-3 py-2 rounded-l bg-black border border-gray-700 outline-none text-white"
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-white text-black rounded-r font-bold"
+              aria-label="Subscribe"
+            >
+              &rarr;
+            </button>
+          </form>
+        </div>
+        {/* Support Column */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-white">Support</h3>
+          <div>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</div>
+          <div className="mt-1">exclusive@gmail.com</div>
+          <div className="mt-1">+88015-88888-9999</div>
+        </div>
+        {/* Account Column */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-white">Account</h3>
+          <ul className="space-y-1">
+            <li>
+              <a href="#" className="hover:text-white">
+                My Account
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Login / Register
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Cart
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Wishlist
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Shop
+              </a>
+            </li>
+          </ul>
+        </div>
+        {/* Quick Link Column */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-white">Quick Link</h3>
+          <ul className="space-y-1">
+            <li>
+              <a href="#" className="hover:text-white">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Terms Of Use
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-white">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        {/* Download App Column */}
+        <div>
+          <h3 className="text-lg font-bold mb-2 text-white">Download App</h3>
+          <div className="mb-2">Save $3 with App New User Only</div>
+          <div className="flex gap-2 mb-3">
+            {/* These QR and App icons should be real assets */}
+            <img
+              src="/path/to/qr-code.png"
+              alt="App QR"
+              className="h-12 w-12 object-cover"
+            />
+            <div className="flex flex-col justify-center gap-2">
+              <img
+                src="/path/to/google-play.png"
+                alt="Google Play"
+                className="h-7"
+              />
+              <img
+                src="/path/to/app-store.png"
+                alt="App Store"
+                className="h-7"
+              />
             </div>
           </div>
+          <div className="flex gap-4 text-xl mt-2">
+            <a href="#" aria-label="Facebook">
+              {/* <FaFacebookF /> */}
+            </a>
+            <a href="#" aria-label="Twitter">
+              {/* <FaTwitter /> */}
+            </a>
+            <a href="#" aria-label="Instagram">
+              {/* <FaInstagram /> */}
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              {/* <FaLinkedinIn /> */}
+            </a>
+          </div>
         </div>
+      </div>
+      <div className="w-full text-center mt-10 text-gray-400 text-xs">
+        © Copyright Rimel 2022. All right reserved
       </div>
     </footer>
   );

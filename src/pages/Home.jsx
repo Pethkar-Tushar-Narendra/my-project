@@ -12,6 +12,7 @@ import ProductLists2 from "../components/ProductLists2";
 import ProductLists3 from "../components/ProductLists3";
 import ShoppingCarts from "../components/ShoppingCarts";
 import StoreNaviagtion from "../components/StoreNaviagtion";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export default function Example() {
   const [open, setOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function Example() {
       <Incentives />
       <Footers />
       <ShoppingCarts open={open} setOpen={setOpen} />
+      <ScrollToTopButton />
     </div>
   );
 }
