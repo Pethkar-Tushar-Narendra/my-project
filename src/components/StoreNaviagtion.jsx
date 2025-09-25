@@ -321,7 +321,7 @@ export default function StoreNaviagtion({ openCart }) {
 
                   <div className="hidden h-full lg:flex">
                     {/* Flyout menus */}
-                    <PopoverGroup className="inset-x-0 bottom-0 px-4">
+                    <PopoverGroup className="inset-x-0 bottom-0 px-4 z-40">
                       <div className="flex h-full justify-center space-x-8">
                         {navigation.categories.map((category) => (
                           <Popover key={category.name} className="flex">

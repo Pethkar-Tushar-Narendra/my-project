@@ -102,7 +102,7 @@ export default function CategoryFilters() {
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          zIndex: 100,
+          zIndex: 5,
           pointerEvents: "none", // optional: disables mouse events on wrapper
         }}
       >

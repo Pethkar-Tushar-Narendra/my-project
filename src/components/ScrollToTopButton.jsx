@@ -7,7 +7,7 @@ export default function ScrollToTopButton() {
     <button
       onClick={handleScrollToTop}
       aria-label="Scroll to top"
-      className="fixed bottom-8 right-8 z-50 bg-white rounded-full p-2 shadow-lg hover:bg-gray-200 transition duration-200"
+      className="fixed bottom-8 right-8 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-200 transition duration-200"
       style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
     >
       {/* Heroicons Arrow Up Icon (20/solid) */}
