@@ -1,6 +1,6 @@
 export default function CategoriesSkeleton() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+    <div>
       <ul
         role="list"
         className=" w-full space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900 animate-pulse"

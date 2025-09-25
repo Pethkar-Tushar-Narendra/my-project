@@ -1,84 +1,130 @@
-const categories = [
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import { fetchCategories } from "../store/categoriesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import CategoriesSkeleton from "./skeletons/CategoriesSkeleton";
+import Alerts from "./UI/Alerts";
+import Camera from "../assets/Category-Camera.svg";
+import CellPhone from "../assets/Category-CellPhone.svg";
+import Computer from "../assets/Category-Computer.svg";
+import Gamepad from "../assets/Category-Gamepad.svg";
+import Headphone from "../assets/Category-Headphone.svg";
+import SmartWatch from "../assets/Category-SmartWatch.svg";
+
+const categoriesIcons = [
+  // {
+  //   name: "New Arrivals",
+  //   href: "#",
+  //   imageSrc: Camera,
+  // },
   {
     name: "New Arrivals",
     href: "#",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-category-01.jpg",
+    imageSrc: CellPhone,
   },
   {
     name: "Productivity",
     href: "#",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-category-02.jpg",
+    imageSrc: Computer,
   },
   {
-    name: "Workspace",
+    name: "Productivity",
     href: "#",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-category-04.jpg",
+    imageSrc: Gamepad,
   },
   {
-    name: "Accessories",
+    name: "Productivity",
     href: "#",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-category-05.jpg",
+    imageSrc: Headphone,
   },
   {
-    name: "Sale",
+    name: "Productivity",
     href: "#",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-01-category-03.jpg",
+    imageSrc: SmartWatch,
   },
 ];
 
 export default function CategoryPreview1() {
-  return (
-    <div className="bg-white">
-      <div className="py-16 sm:py-24 xl:mx-auto xl:max-w-7xl xl:px-8">
-        <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            Shop by Category
-          </h2>
-          <a
-            href="#"
-            className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
-          >
-            Browse all categories
-            <span aria-hidden="true"> &rarr;</span>
-          </a>
-        </div>
+  const dispatch = useDispatch();
+  const {
+    items: categories,
+    loading,
+    error,
+  } = useSelector((state) => state.categories);
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch]);
 
-        <div className="mt-4 flow-root">
-          <div className="-my-2">
-            <div className="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
-              <div className="absolute flex space-x-8 px-4 sm:px-6 lg:px-8 xl:relative xl:grid xl:grid-cols-5 xl:gap-x-8 xl:space-x-0 xl:px-0">
-                {categories.map((category) => (
-                  <a
-                    key={category.name}
-                    href={category.href}
-                    className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto"
-                  >
-                    <span aria-hidden="true" className="absolute inset-0">
-                      <img
-                        alt=""
-                        src={category.imageSrc}
-                        className="size-full object-cover"
-                      />
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-gray-800 opacity-50"
-                    />
-                    <span className="relative mt-auto text-center text-xl font-bold text-white">
-                      {category.name}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
+  return (
+    <div className="bg-white ">
+      <div className="py-16 sm:py-24 xl:mx-auto xl:max-w-7xl xl:px-8 border-t border-b border-gray-200">
+        {/* --- Flash Sales Header, Timer, and Arrows --- */}
+        <div className="flex items-center text-red-500 font-bold px-4 sm:px-6 lg:px-0">
+          <span className="inline-block w-5 h-10 bg-red-500 rounded mr-2"></span>
+          Today’s
+        </div>
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
+          <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+              Browse By Category
+            </h2>
+          </div>
+          <div className="hidden text-sm font-semibold sm:block">
+            <button
+              type="button"
+              className="rounded-full bg-gray-100 p-2 mx-2"
+              aria-label="See previous"
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              className="rounded-full bg-gray-100 p-2"
+              aria-label="See next"
+            >
+              <ArrowRightIcon className="w-5 h-5" />
+            </button>
           </div>
         </div>
 
+        {/* --- State-Driven Product List --- */}
+        {loading ? (
+          <CategoriesSkeleton />
+        ) : error ? (
+          <Alerts message={error} />
+        ) : (
+          <div className="mt-16 flow-root">
+            <div className="-my-2">
+              <div className="relative -mb-6 w-full overflow-x-auto pb-6">
+                <div className="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:gap-x-8 lg:space-x-0">
+                  {categories.map((category, idx) => (
+                    <div
+                      key={category.name}
+                      className="relative flex h-40 w-44 flex-col items-center overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-48 border border-gray-200"
+                    >
+                      <span aria-hidden="true" className="absolute">
+                        <img
+                          alt=""
+                          src={categoriesIcons[idx % 5].imageSrc}
+                          className="size-full object-cover"
+                        />
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-x-0 bottom-0 "
+                      />
+                      <span className="relative mt-auto text-center text-black">
+                        {category.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="mt-6 px-4 sm:hidden">
           <a
             href="#"

@@ -121,7 +121,9 @@ export default function CategoryFilters() {
   return (
     <div className="bg-white">
       {loading ? (
-        <CategoriesSkeleton />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <CategoriesSkeleton />
+        </div>
       ) : error ? (
         <Alerts message={`Failed to load categories: ${error}`} />
       ) : (
