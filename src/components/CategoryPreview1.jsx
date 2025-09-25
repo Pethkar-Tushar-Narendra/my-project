@@ -142,7 +142,7 @@ export default function CategoryPreview1() {
                       <span
                         className={`relative mt-auto text-center ${
                           selectedCategoryId === category.id
-                            ? "text-white"
+                            ? "text-white font-bold"
                             : "text-black"
                         }`}
                       >

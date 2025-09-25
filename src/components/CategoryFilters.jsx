@@ -280,7 +280,7 @@ export default function CategoryFilters() {
                   >
                     {categories.map((category) => (
                       <li key={category.name}>
-                        <a href={category.href}>{category.name}</a>
+                        <button>{category.name}</button>
                       </li>
                     ))}
                   </ul>
