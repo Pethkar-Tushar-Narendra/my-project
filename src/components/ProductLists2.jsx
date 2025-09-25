@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/productsSlice"; // adjust path
 import CategoriesSkeleton from "./skeletons/CategoriesSkeleton"; // loading skeleton
 import Alerts from "./UI/Alerts"; // error alert
+import { addToCart } from "../store/cartSlice";
 
 export default function ProductLists2() {
   const dispatch = useDispatch();
