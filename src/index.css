@@ -16,9 +16,6 @@
 #root {
   height: 100vh;
 }
-.custom-slick-dots * {
-  content: "";
-}
 .custom-slick-dots li {
   margin: 0 8px;
 }

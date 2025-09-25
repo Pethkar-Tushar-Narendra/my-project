@@ -262,7 +262,7 @@ export default function CategoryFilters() {
 
             <section
               aria-labelledby="products-heading"
-              className="pt-6 lg:pt-0 pb-24"
+              className="pt-6 lg:pt-0 pb-20"
             >
               <h2 id="products-heading" className="sr-only">
                 Products

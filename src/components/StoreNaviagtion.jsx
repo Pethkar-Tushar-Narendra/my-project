@@ -254,7 +254,7 @@ export default function StoreNaviagtion({ openCart }) {
         <nav aria-label="Top ">
           {/* Top navigation */}
           <div className="bg-gray-900">
-            <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto flex h-12 lg:h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               {/* Currency selector */}
               <div className="hidden lg:block lg:flex-1">
                 {/* <div className="-ml-2 inline-grid grid-cols-1">
