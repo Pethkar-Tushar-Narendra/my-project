@@ -16,6 +16,28 @@
 #root {
   height: 100vh;
 }
+.custom-slick-dots * {
+  content: "";
+}
+.custom-slick-dots li {
+  margin: 0 8px;
+}
+.custom-slick-dots li button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #888;
+  border: none;
+  padding: 0;
+  opacity: 1;
+  transition: border 0.2s, background 0.2s;
+  font-size: 0;
+}
+.custom-slick-dots li.slick-active button {
+  background: #cf2127; /* active dot: red */
+  border: 3px solid #fff; /* white border for active */
+}
+
 /* a {
   font-weight: 500;
   color: #646cff;

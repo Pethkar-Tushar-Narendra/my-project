@@ -278,7 +278,7 @@ export default function StoreNaviagtion({ openCart }) {
               <p className="flex-1 text-center text-sm font-medium text-white lg:flex-none">
                 Summer Sale For All Swim Suits And Free Express Delivery - OFF
                 50%!{" "}
-                <Link to={"/"} className="ml-2 underline">
+                <Link to={"/"} className="ml-2 underline underline-offset-4">
                   ShopNow
                 </Link>
               </p>
