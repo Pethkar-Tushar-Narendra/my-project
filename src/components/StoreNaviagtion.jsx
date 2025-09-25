@@ -311,12 +311,12 @@ export default function StoreNaviagtion({ openCart }) {
                 <div className="flex h-16 items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                    <a href="#">
+                    <Link to="#">
                       <span className="sr-only">Your Company</span>
                       <h1 className="font-inter font-bold text-2xl leading-[24px] tracking-[0.03em]">
                         Exclusive
                       </h1>
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="hidden h-full lg:flex">
@@ -415,10 +415,12 @@ export default function StoreNaviagtion({ openCart }) {
                   </div>
 
                   {/* Logo (lg-) */}
-                  <a href="#" className="lg:hidden">
+                  <Link to="#" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <img alt="" src={logo} className="h-8 w-auto" />
-                  </a>
+                    <h1 className="font-inter font-bold text-2xl leading-[24px] tracking-[0.03em]">
+                      Exclusive
+                    </h1>
+                  </Link>
 
                   <div className="flex flex-1 items-center justify-end">
                     <div className="grid-cols-1 hidden md:grid">
