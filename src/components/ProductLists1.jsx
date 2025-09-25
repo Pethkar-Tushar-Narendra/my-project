@@ -176,7 +176,7 @@ export default function ProductLists1() {
                           {/* Add to Cart button, revealed on hover */}
                           <button
                             disabled={loadingCart}
-                            className="absolute bottom-0 cursor-pointer z-50 left-0 w-full bg-black text-white py-2 font-semibold flex w-full justify-center rounded-md items-center gap-x-1.5 px-3 shadow-xs  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500 rounded-b-md opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute bottom-0 cursor-pointer z-50 left-0 bg-black text-white py-2 font-semibold flex w-full justify-center rounded-md items-center gap-x-1.5 px-3 shadow-xs  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500 rounded-b-md opacity-0 group-hover:opacity-100 transition-opacity"
                             onClick={() => handleAddToCart(product.id)}
                           >
                             {loadingCart && (
