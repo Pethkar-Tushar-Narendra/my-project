@@ -18,11 +18,14 @@ export default function ProductLists1() {
     error,
   } = useSelector((state) => state.products);
 
+  const selectedCategoryId = useSelector(
+    (state) => state.categories.selectedCategoryId
+  );
   useEffect(() => {
-    if (products.length === 0) {
+    if (!selectedCategoryId) {
       dispatch(fetchProducts());
     }
-  }, [dispatch]);
+  }, [dispatch, selectedCategoryId]);
 
   // This is for the timer; in a real app, implement countdown logic!
   const timer = {
@@ -32,23 +35,23 @@ export default function ProductLists1() {
     seconds: "56",
   };
   // state to track the current page (assume slice and thunk handle "page" param)
-  const [page, setPage] = useState(1);
-  const observer = useRef();
+  // const [page, setPage] = useState(1);
+  // const observer = useRef();
 
-  const lastProductRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new window.IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setPage((prev) => prev + 1);
-          dispatch(fetchProducts({ page: page + 1 })); // adjust fetchProducts to accept page param
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, dispatch, page]
-  );
+  // const lastProductRef = useCallback(
+  //   (node) => {
+  //     if (loading) return;
+  //     if (observer.current) observer.current.disconnect();
+  //     observer.current = new window.IntersectionObserver((entries) => {
+  //       if (entries[0].isIntersecting) {
+  //         setPage((prev) => prev + 1);
+  //         dispatch(fetchProducts({ page: page + 1 })); // adjust fetchProducts to accept page param
+  //       }
+  //     });
+  //     if (node) observer.current.observe(node);
+  //   },
+  //   [loading, dispatch, page]
+  // );
 
   return (
     <div className="bg-white">
@@ -117,9 +120,9 @@ export default function ProductLists1() {
                   className="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:gap-x-8 lg:space-x-0"
                   // style={{ minWidth: "max-content" }}
                 >
-                  {products.map((product, idx) => (
+                  {products?.map((product, idx) => (
                     <li
-                      ref={idx === products.length - 1 ? lastProductRef : null}
+                      // ref={idx === products.length - 1 ? lastProductRef : null}
                       key={product.id}
                       className="inline-flex w-64 flex-col text-start lg:w-60"
                     >
@@ -223,12 +226,20 @@ export default function ProductLists1() {
                       </ul> */}
                     </li>
                   ))}
+                  {products.length === 0 && !loading && (
+                    <Alerts className="p-4 text-gray-500">
+                      No products found.
+                    </Alerts>
+                  )}
                 </ul>
               </div>
             </div>
 
             <div className="mt-12 flex px-4 justify-center">
               <button
+                onClick={() => {
+                  dispatch(fetchProducts());
+                }}
                 type="button"
                 className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
               >

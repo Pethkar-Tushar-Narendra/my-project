@@ -10,6 +10,8 @@ import Computer from "../assets/Category-Computer.svg";
 import Gamepad from "../assets/Category-Gamepad.svg";
 import Headphone from "../assets/Category-Headphone.svg";
 import SmartWatch from "../assets/Category-SmartWatch.svg";
+import { setSelectedCategoryId } from "../store/categorySlice";
+import { fetchProductsByCategory } from "../store/productsSlice";
 
 const categoriesIcons = [
   // {
@@ -51,11 +53,26 @@ export default function CategoryPreview1() {
     loading,
     error,
   } = useSelector((state) => state.categories);
+
+  const selectedCategoryId = useSelector(
+    (state) => state.category.selectedCategoryId
+  );
+
+  useEffect(() => {
+    if (selectedCategoryId) {
+      dispatch(fetchProductsByCategory());
+    }
+  }, [selectedCategoryId, dispatch]);
+
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(fetchCategories());
     }
   }, [dispatch]);
+
+  function handleCategoryChange(categoryId) {
+    dispatch(setSelectedCategoryId(categoryId));
+  }
 
   return (
     <div className="bg-white ">
@@ -63,7 +80,7 @@ export default function CategoryPreview1() {
         {/* --- Flash Sales Header, Timer, and Arrows --- */}
         <div className="flex items-center text-red-500 font-bold px-4 sm:px-6 lg:px-0">
           <span className="inline-block w-5 h-10 bg-red-500 rounded mr-2"></span>
-          Today’s
+          Categories
         </div>
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
           <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
@@ -100,14 +117,21 @@ export default function CategoryPreview1() {
               <div className="relative -mb-6 w-full overflow-x-auto pb-6">
                 <div className="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:gap-x-8 lg:space-x-0">
                   {categories.map((category, idx) => (
-                    <div
+                    <button
                       key={category.name}
-                      className="relative flex h-40 w-44 flex-col items-center overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-48 border border-gray-200"
+                      onClick={() => handleCategoryChange(category.id)}
+                      className={`relative ${
+                        selectedCategoryId === category.id && "bg-red-600"
+                      } flex h-40 w-44 flex-col items-center overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-48 border border-gray-200`}
                     >
                       <span aria-hidden="true" className="absolute">
                         <img
                           alt=""
-                          src={categoriesIcons[idx % 5].imageSrc}
+                          src={
+                            selectedCategoryId === category.id
+                              ? Camera
+                              : categoriesIcons[idx % 5].imageSrc
+                          }
                           className="size-full object-cover"
                         />
                       </span>
@@ -115,17 +139,23 @@ export default function CategoryPreview1() {
                         aria-hidden="true"
                         className="absolute inset-x-0 bottom-0 "
                       />
-                      <span className="relative mt-auto text-center text-black">
+                      <span
+                        className={`relative mt-auto text-center ${
+                          selectedCategoryId === category.id
+                            ? "text-white"
+                            : "text-black"
+                        }`}
+                      >
                         {category.name}
                       </span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
           </div>
         )}
-        <div className="mt-6 px-4 sm:hidden">
+        <div className="mt-6 px-4 hidden">
           <a
             href="#"
             className="block text-sm font-semibold text-indigo-600 hover:text-indigo-500"

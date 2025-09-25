@@ -8,8 +8,9 @@ export const fetchProducts = createAsyncThunk("products/fetchAll", async () => {
 
 export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchByCategory",
-  async (categoryId) => {
-    const res = await axios.get(`/products/category/${categoryId}`);
+  async (_, { getState }) => {
+    const categoryId = getState().category.selectedCategoryId;
+    const res = await axios.get(`/products/${categoryId}`);
     return res.data;
   }
 );
@@ -38,7 +39,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = [action.payload.product];
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.loading = false;
