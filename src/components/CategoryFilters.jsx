@@ -359,12 +359,11 @@ export default function CategoryFilters() {
                 {/* Product grid */}
                 <div className="lg:col-span-3 lg:pt-8">
                   <Slider {...settings}>
-                    <div>
-                      <PromowithImage />
-                    </div>
-                    <div>
-                      <PromowithImage />
-                    </div>
+                    <PromowithImage />
+                    <PromowithImage />
+                    <PromowithImage />
+                    <PromowithImage />
+                    <PromowithImage />
                   </Slider>
                 </div>
               </div>
