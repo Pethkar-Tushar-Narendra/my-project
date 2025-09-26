@@ -3,7 +3,7 @@ import { addToCart } from "../store/cartSlice";
 import { fetchProducts } from "../store/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
+import Alerts from "../components/UI/Alerts";
 const products = [
   {
     id: 1,
@@ -134,6 +134,7 @@ export default function ProductLists3() {
       Math.min(prev + PAGE_SIZE, products.length - PAGE_SIZE)
     );
   }
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
