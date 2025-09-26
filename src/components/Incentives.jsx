@@ -4,21 +4,18 @@ import moduleName3 from "../assets/Services (2).png";
 
 const incentives = [
   {
-    name: "Free Shipping",
-    description:
-      "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
+    name: "FREE AND FAST DELIVERY",
+    description: "Free delivery for all orders over $140",
     imageSrc: moduleName1,
   },
   {
-    name: "24/7 Customer Support",
-    description:
-      "Our AI chat widget is powered by a naive series of if/else statements. Guaranteed to irritate.",
+    name: "24/7 CUSTOMER SERVICE",
+    description: "Friendly 24/7 customer support",
     imageSrc: moduleName2,
   },
   {
-    name: "Fast Shopping Cart",
-    description:
-      "Look how fast that cart is going. What does this mean for the actual experience? I don't know.",
+    name: "MONEY BACK GUARANTEE",
+    description: "We reurn money within 30 days",
     imageSrc: moduleName3,
   },
 ];
@@ -43,7 +40,7 @@ export default function Incentives() {
                 </div>
               </div>
               <div className="mt-3 sm:mt-0 sm:ml-3 lg:mt-3 lg:ml-0">
-                <h3 className="text-sm font-medium text-gray-900">
+                <h3 className="text-md font-bold text-gray-900">
                   {incentive.name}
                 </h3>
                 <p className="mt-2 text-sm text-gray-500">
