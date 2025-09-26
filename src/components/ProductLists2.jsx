@@ -40,7 +40,7 @@ export default function ProductLists2() {
         </div>
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
           <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900">
               Best Selling Products{" "}
             </h2>
           </div>

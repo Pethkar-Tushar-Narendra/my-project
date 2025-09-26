@@ -2,12 +2,23 @@ export default function BentoGrids() {
   return (
     <div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-center text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
+        <div className="flex items-center text-red-500 font-bold px-4 sm:px-6 lg:px-0">
+          <span className="inline-block w-5 h-10 bg-red-500 rounded mr-2"></span>
+          Featured
+        </div>
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
+          <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+              New Arrival
+            </h2>
+          </div>
+        </div>
+        {/* <h2 className="text-center text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
           Deploy faster
         </h2>
         <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl dark:text-white">
           Everything you need to deploy your app
-        </p>
+        </p> */}
         <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
           <div className="relative lg:row-span-2">
             <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl dark:bg-gray-800" />
