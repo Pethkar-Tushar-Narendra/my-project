@@ -1,12 +1,16 @@
+import moduleName1 from "../assets/ps5-slim-goedkope-playstation_large 1.png";
+import moduleName2 from "../assets/attractive-woman-wearing-hat-posing-black-background 1.png";
+import moduleName3 from "../assets/Frame 707.png";
+import moduleName4 from "../assets/652e82cd70aa6522dd785109a455904c.png";
 export default function BentoGrids() {
   return (
     <div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <div className="flex items-center text-red-500 font-bold px-4 sm:px-6 lg:px-0">
+        <div className="flex items-center text-red-500 font-bold px-0 sm:px-6 lg:px-0">
           <span className="inline-block w-5 h-10 bg-red-500 rounded mr-2"></span>
           Featured
         </div>
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
+        <div className="flex items-center justify-between px-0 sm:px-6 lg:px-0 my-5">
           <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900">
               New Arrival
@@ -19,10 +23,10 @@ export default function BentoGrids() {
         <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl dark:text-white">
           Everything you need to deploy your app
         </p> */}
-        <div className="mt-10 sm:mt-16 grid lg:grid-flow-col lg:grid-rows-2 gap-4">
+        {/* <div className="mt-10 sm:mt-16 grid lg:grid-flow-col lg:grid-rows-2 gap-4">
           <div className="relative lg:col-span-4 lg:row-span-2  lg:h-[600px]">
-            <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-4xl dark:bg-gray-800" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+            <div className="absolute inset-px  bg-white  dark:bg-gray-800" />
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-sm">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
                 <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-white">
                   Mobile friendly
@@ -127,6 +131,83 @@ export default function BentoGrids() {
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5 max-lg:rounded-b-4xl lg:rounded-r-4xl dark:outline-white/15" />
+          </div>
+        </div> */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* PlayStation 5 Card (Large) */}
+          <div className="col-span-1 lg:col-span-1 bg-black rounded-sm overflow-hidden relative flex flex-col justify-end min-h-[586px]">
+            <img
+              src={moduleName1} // Replace as needed
+              alt="PlayStation 5"
+              className="absolute inset-0 w-full h-full object-contain opacity-100"
+            />
+            <div className="relative z-10  lg:p-8 p-3">
+              <h3 className="text-white text-2xl font-semibold">
+                PlayStation 5
+              </h3>
+              <p className="text-white text-sm mt-2 opacity-80">
+                Black and White version of the PS5 coming out on sale.
+              </p>
+              <button className="text-white underline mt-5">Shop Now</button>
+            </div>
+          </div>
+
+          {/* Right Column Cards */}
+          <div className="flex flex-col gap-4">
+            {/* Women's Collections */}
+            <div className="bg-black rounded-sm overflow-hidden relative min-h-[284px] flex flex-col justify-end">
+              <img
+                src={moduleName2}
+                alt="Women's Collections"
+                className="absolute inset-0 w-full h-full object-contain opacity-100"
+              />
+              <div className="relative z-10  lg:p-6 p-3">
+                <h3 className="text-white text-lg font-semibold">
+                  Women’s Collections
+                </h3>
+                <p className="text-white text-xs mt-1 opacity-80">
+                  Featured woman collections that give you another vibe.
+                </p>
+                <button className="text-white underline mt-5">Shop Now</button>
+              </div>
+            </div>
+            {/* Speakers and Perfume */}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Speakers */}
+              <div className="bg-black rounded-sm overflow-hidden relative min-h-[284px] flex flex-col justify-end">
+                <img
+                  src={moduleName3}
+                  alt="Speakers"
+                  className="absolute inset-0 w-full h-full object-contain opacity-100 p-6"
+                />
+                <div className="relative z-10 lg:p-6 p-3">
+                  <h3 className="text-white text-lg font-semibold">Speakers</h3>
+                  <p className="text-white text-xs mt-1 opacity-80">
+                    Amazon wireless speakers
+                  </p>
+                  <button className="text-white underline mt-5">
+                    Shop Now
+                  </button>
+                </div>
+              </div>
+              {/* Perfume */}
+              <div className="bg-black rounded-sm overflow-hidden relative min-h-[284px] flex flex-col justify-end">
+                <img
+                  src={moduleName4}
+                  alt="Perfume"
+                  className="absolute inset-0 w-full h-full object-contain opacity-100 p-6"
+                />
+                <div className="relative z-10 lg:p-6 p-3">
+                  <h3 className="text-white text-lg font-semibold">Perfume</h3>
+                  <p className="text-white text-xs mt-1 opacity-80">
+                    GUCCI INTENSE-OUD EDP
+                  </p>
+                  <button className="text-white underline mt-5">
+                    Shop Now
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
