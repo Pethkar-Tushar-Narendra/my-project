@@ -252,7 +252,7 @@ export default function ProductLists3() {
                   {/* ... rest of card ... */}
                 </div>
 
-                <div className="mt-6 ">
+                <div className="mt-6">
                   {/* <p className="text-sm text-gray-500">
                             {product.color}
                           </p> */}
@@ -328,7 +328,7 @@ export default function ProductLists3() {
             <Alerts className="p-4 text-gray-500">No products found.</Alerts>
           )}
         </div>
-        <div className="mt-12 flex px-4 justify-center">
+        <div className="mt-12 flex px-4 justify-center md:hidden">
           <div className="text-sm font-semibold sm:block">
             <button
               type="button"
