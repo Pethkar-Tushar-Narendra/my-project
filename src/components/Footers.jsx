@@ -11,7 +11,7 @@ import AppStore from "../assets/download-appstore.png";
 export default function AppFooter() {
   return (
     <footer className="bg-black text-gray-300 pt-12 pb-8 relative mt-32 w-full">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-gray-700 pb-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-gray-700 pb-10">
         {/* Exclusive Column */}
         <div>
           <h3 className="text-lg font-bold mb-2 text-white">Exclusive</h3>

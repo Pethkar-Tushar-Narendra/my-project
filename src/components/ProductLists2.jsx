@@ -252,7 +252,7 @@ export default function ProductLists2() {
             </div>
           </>
         )}
-        <div className="mt-8 text-sm sm:hidden flex justify-center">
+        <div className="mt-12 text-sm sm:hidden flex justify-center">
           <button
             onClick={() => {
               dispatch(fetchProducts());
