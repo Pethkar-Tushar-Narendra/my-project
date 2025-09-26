@@ -149,7 +149,7 @@ export default function ProductLists3() {
               Explore Our Products{" "}
             </h2>
           </div>
-          <div className="text-sm font-semibold sm:block">
+          <div className="text-sm font-semibold hidden sm:block">
             <button
               type="button"
               className="rounded-full bg-gray-100 p-2 mx-2"
@@ -328,16 +328,27 @@ export default function ProductLists3() {
             <Alerts className="p-4 text-gray-500">No products found.</Alerts>
           )}
         </div>
-        <div className="mt-12 flex px-4 justify-center hidden">
-          <button
-            onClick={() => {
-              dispatch(fetchProducts());
-            }}
-            type="button"
-            className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
-          >
-            View All Products
-          </button>
+        <div className="mt-12 flex px-4 justify-center">
+          <div className="text-sm font-semibold sm:block">
+            <button
+              type="button"
+              className="rounded-full bg-gray-100 p-2 mx-2"
+              aria-label="See previous"
+              onClick={handlePrev}
+              disabled={startIndex === 0}
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              className="rounded-full bg-gray-100 p-2"
+              aria-label="See next"
+              onClick={handleNext}
+              disabled={startIndex + PAGE_SIZE >= products.length}
+            >
+              <ArrowRightIcon className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
