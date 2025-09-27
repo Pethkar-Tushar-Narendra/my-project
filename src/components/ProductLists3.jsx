@@ -139,11 +139,11 @@ export default function ProductLists3() {
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
-        <div className="flex items-center text-red-500 font-bold px-4 sm:px-6 lg:px-0">
+        <div className="flex items-center text-red-500 font-bold px-0">
           <span className="inline-block w-5 h-10 bg-red-500 rounded mr-2"></span>
           Our Products{" "}
         </div>
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0 mt-5">
+        <div className="flex items-center justify-between px-0 mt-5">
           <div className="flex flex-col justify-center gap-5 lg:gap-10 lg:flex-row lg:items-center">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900">
               Explore Our Products{" "}
@@ -256,11 +256,9 @@ export default function ProductLists3() {
                   {/* <p className="text-sm text-gray-500">
                             {product.color}
                           </p> */}
-                  <h3 className="mt-1 font-semibold text-gray-900">
-                    <p>
-                      <span className="absolute inset-0" />
-                      {product.name}
-                    </p>
+                  <h3 className="mt-1 font-semibold text-gray-900 truncate">
+                    <span className="absolute inset-0" />
+                    {product.name}
                   </h3>
                   <p className="mt-1">
                     <span className="text-red-500 font-semibold">
@@ -275,7 +273,7 @@ export default function ProductLists3() {
                     className="md:hidden absolute -bottom-12 bg-black text-white py-2 font-semibold flex w-full justify-center rounded-md items-center gap-x-1.5 px-3 shadow-xs  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500 rounded-b-md mt-3 z-10"
                     onClick={() => handleAddToCart(product.id)}
                   >
-                    {loadingCart && (
+                    {/* {loadingCart && (
                       <div role="status">
                         <svg
                           aria-hidden="true"
@@ -296,7 +294,7 @@ export default function ProductLists3() {
                         </svg>
                         <span className="sr-only">Loading...</span>
                       </div>
-                    )}
+                    )} */}
                     Add To Cart
                   </button>
                 </div>

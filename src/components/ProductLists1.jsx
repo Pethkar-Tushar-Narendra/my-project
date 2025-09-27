@@ -229,7 +229,7 @@ export default function ProductLists1() {
                             className="md:hidden absolute -bottom-12 bg-black text-white py-2 font-semibold flex w-full justify-center rounded-md items-center gap-x-1.5 px-3 shadow-xs  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500 rounded-b-md mt-3 z-10"
                             onClick={() => handleAddToCart(product.id)}
                           >
-                            {loadingCart && (
+                            {/* {loadingCart && (
                               <div role="status">
                                 <svg
                                   aria-hidden="true"
@@ -250,7 +250,7 @@ export default function ProductLists1() {
                                 </svg>
                                 <span className="sr-only">Loading...</span>
                               </div>
-                            )}
+                            )} */}
                             Add To Cart
                           </button>
                         </div>
